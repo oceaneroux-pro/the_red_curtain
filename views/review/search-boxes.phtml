@@ -1,0 +1,40 @@
+<section class="search-work">
+    <?php if (isset($_GET['message'])): ?>
+        <p class="green"><?= $_GET['message'] ?></p>
+    <?php endif; ?>
+    <!--API The Movie Database-->
+        <div class="search">
+            <h2 class="section-title">Chercher un film ou une série</h2>
+            <div class="fetch">
+                <input type="text" placeholder="Entrez le nom du film ou de la série" id="search-bar" class="search-bar"/>
+                <span id="search" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+            <div id="target">
+                <!--Affichage des résultats-->
+            </div>
+    </div>
+    <!--API Open Library-->
+        <div class="search">
+            <h2 class="section-title">Chercher un livre</h2>
+            <p class="announcement">(psst! il se peut que vous ayez plus de chance en tapant le titre anglais)</p>
+            <div class="fetch">
+                <input type="text" placeholder="Entrez le nom du livre" id="search-bar-books" class="search-bar"/>
+                <span id="search2" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+            
+            <!--LOADER-->
+            <div id="loader" class="hide">
+                <div class="loader-content">
+                    <div class="square">
+                        <div class="trait1"></div>
+                        <div class="trait2"></div>
+                        <div class="trait3"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="target2">
+                <!--Affichage des résultats-->
+            </div>
+    </div>
+</section>
+<script src="public/js/manage_api.js"></script>

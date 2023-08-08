@@ -1,0 +1,57 @@
+<?php if(!empty($user)) : ?>
+    <?php if(isset($alert)) : ?>
+        <p class="red"><?= $alert ?></p>
+    <?php endif; ?>
+
+<section id="delete-user">
+    <form method="POST">
+        <label>Voulez-vous supprimer ce compte ?</label>
+        <div class="boutons-warning">
+            <input type="submit" class="fake-button" value="Oui, supprimer"/>
+        </div>
+        <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+    </form>
+    
+        <div id="profile-aside">
+            <h2 class="section-title-admin">Identité</h2>
+            <!--Afficher les informations de cet utilisateur-->
+            <div class="img-and-pseudo">
+                <img src="public/images/avatars/<?= $user['pdp'] ?>" alt="<?= $user['pseudo'] ?>" class="profile-picture-medium">
+                <h3><?= $user['pseudo'] ?></h3>
+            </div>
+            <div class="user-infos">
+                <ul>
+                    <li><span>Identifiant</span> <?= $user['id_user'] ?></li>
+                    <li><span>Email</span> <?= $user['mail'] ?></li>
+                </ul>
+                <ul>
+                     <?php if (empty($user['nom'])): ?>
+                     <li class="red-admin"><span>Nom</span> Non renseigné</li>
+                     <?php else: ?>
+                     <li><span>Nom</span> <?= $user['nom'] ?></li>
+                     <?php endif; ?>
+                     
+                     <?php if (empty($user['prenom'])): ?>
+                     <li class="red-admin"><span>Prénom</span> Non renseigné</li>
+                     <?php else: ?>
+                     <li><span>Prénom</span> <?= $user['prenom'] ?></li>
+                     <?php endif; ?>
+                     
+                     <?php if (empty($user['tel'])): ?>
+                     <li class="red-admin"><span>Téléphone</span> Non renseigné</li>
+                     <?php else: ?>
+                     <li><span>Téléphone</span> <?= $user['tel'] ?></li>
+                     <?php endif; ?>
+                     
+                     <?php if (empty($user['anniversaire'])): ?>
+                     <li class="red-admin"><span>Anniversaire</span> Non renseigné</li>
+                     <?php else: ?>
+                     <li><span>Anniversaire</span> <?= $user['anniversaire'] ?></li>
+                     <?php endif; ?>
+                </ul>
+            </div>
+        </div>
+</section>
+<?php else: ?>
+<p class="red-admin">Aucun utilisateur trouvé</p>
+<?php endif; ?>

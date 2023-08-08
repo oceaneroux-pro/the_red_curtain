@@ -1,0 +1,45 @@
+<section>
+    <h2 class="section-title-admin">Gérer les commentaires</h2>
+    <!--Recherche commentaire par mot-->
+    <nav id="fetch-users">
+        <div class="fetch">
+            <input type="text" placeholder="Chercher un mot" id="search-bar-admin" />
+            <i id="word-search" class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div id="results">
+            <!--Affichage des résultats de la recherche users-->
+        </div>
+    </nav>
+    
+    <!--Messages d'erreur ou de confirmation-->
+    <?php if (isset($_GET['message'])): ?>
+        <p class="announcement"><?= $_GET['message'] ?></p>
+    <?php endif; ?>
+
+    <!--Commentaires-->
+    <section id="comments">
+        <div class="result-count-box">
+            <p><?= $length ?> résultats</p>
+        </div>
+        <section class="comment-list">
+        <?php foreach($comments as $comment) : ?>
+            <div class="one-comment-admin">
+                <span class="id-comment"><?= $comment['id_comment'] ?></span>
+                <div class="comment-header">
+                    <img src="public/images/avatars/<?= $comment['pdp'] ?>" alt="Photo de profil <?= $comment['pseudo'] ?>" class="profile-picture-small">
+                    <h4 class="pseudo"><?= $comment['pseudo'] ?> <span class="id-user"><?= $comment['id_user'] ?></span></h4>
+                </div>
+                <div class="comment-main-admin">
+                    <p><?= $comment['contenu'] ?></p>
+                    <small>Le <?= $comment['date'] = date("d/m/Y à H:i", strtotime($comment['date'])); ?></small>
+                </div>
+                <div class="review-card-button">
+                        <a href="index.php?action=delete-comment-admin&id=<?= $comment['id_comment'] ?>" class="fake-button">Supprimer le commentaire</a>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        </section>
+    </section>
+</section>
+
+<script type="module" src="public/js/filter_comments.js"></script>

@@ -1,0 +1,20 @@
+<?php if(!empty($review)) : ?>
+<section>
+    <form method="POST" class="warning-form">
+        <fieldset>
+            <legend>Message envoyé</legend>
+            <textarea class="textarea" name="textarea" id="message" rows="12"><?= $message ?></textarea>
+            <input type="hidden" name="id_user" value="<?= $review['id_user'] ?>"/>
+        </fieldset>
+        <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+        
+        <p class="red-admin"><i class="fa-solid fa-triangle-exclamation"></i> Supprimer la publication entraine la suppression des commentaires lui étant associés.</p>
+        
+        <div class="boutons">
+            <button type="submit" class="admin-button">Confirmer la supression</button>
+        </div>
+    </form>
+</section>
+<?php else: ?>
+<p class="red-admin">Aucune publication trouvée</p>
+<?php endif; ?>

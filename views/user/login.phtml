@@ -1,0 +1,36 @@
+<section class = "main_container">
+	<div class="formulaire">
+		<form action="index.php?action=login" method="post" id="form-sensible" data-inputs-required="1" class="standard-form">
+			<fieldset>
+				<h2 class="legend">Se connecter</h2>
+				<?php if(isset($_GET['message'])) : ?>
+				<p>
+					<?= $_GET['message'] ?>
+				</p>
+				<?php endif; ?>
+				<?php if(isset($message)) : ?>
+				<p>
+					<?= $message ?>
+				</p>
+				<?php endif; ?>
+				<div class="input-span">
+					<div class="input email">
+						<input type="email" name="mail" class="donnee" id="mail"/>
+						<label for="mail" class="label">Email</label>
+					</div>
+					<div class="error-email"></div>
+				</div>
+				<div class="input password">
+					<input type="password" name="mdp" class="donnee" id="mdp-login"/>
+					<label for="mdp-login" class="label">Mot de passe</label>
+				</div>
+				<input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+			</fieldset>
+			<div class="boutons-disconnected">
+				<button type="submit" class="disconnected-button" id="bouton">Se connecter</button>
+				<button type="reset" class="disconnected-button" id="annuler">Annuler</button>
+			</div>
+		</form>
+	</div>
+</section>
+<script type="module" src="public/js/valid_form.js"></script>

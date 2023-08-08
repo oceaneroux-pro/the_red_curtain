@@ -1,0 +1,26 @@
+<section id="send-notif">
+    <form method="POST" class="warning-form">
+        <fieldset>
+            <legend>Sélectionner le message à envoyer</legend>
+            
+            <ul class="boutons-warning">
+                <li>Suppression:
+                    <button id="2" class="admin-button">Infraction des règles</button>
+                    <button id="3" class="admin-button">Inactivité</button>
+                </li>
+                <li>Autre:
+                    <button id="4" class="admin-button">Message personnalisé</button>
+                </li>
+            </ul>
+            <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+            
+            <textarea class="textarea" name="textarea" id="message" rows="15" placeholder="Veuillez entrer un message">
+            </textarea>
+            
+            <div>
+                <input type="submit" class="fake-button" value="Envoyer">
+            </div>
+        </fieldset>
+    </form>
+</section>
+<script type="module" src="public/js/send_warning.js"></script>

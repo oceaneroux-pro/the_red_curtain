@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>the red curtain</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script
+    	  src="https://code.jquery.com/jquery-3.4.1.min.js"
+    	  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    	  crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="public/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="public/css/normalize.css" type="text/css" />
+    <link rel="icon" type="image/x-icon" href="public/images/red_logo.png">
+</head>
+<body class="backstage">
+    <header class="header header-admin">
+        <div class="for-flex">
+            <a href="index.php?action=admin-panel"><img src="public/images/logo_backstage.png" alt="Logo" id="logo_rouge"></a>
+            <?php if($this -> isAdmin()) : ?>
+            <button id="drop-down-menu" class="admin-button check hoverb"><i id="menu-icon" class="fa-solid fa-bars"></i></button>
+            <?php endif; ?>
+        </div>
+        <?php if($this -> isAdmin()) : ?>
+            <nav class="hidden-nav">
+                <ul class="menu-admin">
+                    <li><a href="index.php?action=manage-users">Gérer les utilisateurs</a></li>
+                    <!--L'admin peut consulter la dernière connexion au compte + voir si le profil est complet-->
+                    <li><a href="index.php?action=manage-posts">Gérer les posts</a></li>
+                    <!--L'admin peut consulter les posts d'un utilisateur en recherchant son pseudo ? + il peut accéder aux commentaires-->
+                    <li><a href="index.php?action=manage-comments">Gérer les commentaires</a></li>
+                    <!--L'admin peut consulter tous les commentaires-->
+                    <li><a href="index.php?action=admin-logout">Déconnexion</a></li>
+                </ul>
+            </nav>
+        <?php endif; ?>
+    </header>
+    <?php if($this -> isAdmin()) : ?>
+    <aside class="aside-admin">
+        <p>Bonjour, <?= $_SESSION['admin']['pseudo'] ?></p>
+        <p>Identifiant: <span class="id-admin"><?= $_SESSION['admin']['id_unique'] ?></span></p>
+    </aside>
+    <?php endif; ?>
+    <?php if($this -> isAdmin()) : ?>
+    <main id="main-admin">
+    <?php else: ?>  
+    <main>
+    <?php endif; ?>
+        <?php require $template.".phtml" ?>
+    </main>
+<script src="public/js/mobile_menu.js"></script>
+</body>
+</html>

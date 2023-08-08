@@ -1,0 +1,55 @@
+<?php if (isset($_GET['message'])): ?>
+    <p class="red-admin"><?= $_GET['message'] ?></p>
+<?php endif; ?>
+
+<section class="post-management">
+    <h2 class="section-title-admin">Modérer les publications</h2>
+    
+    <!--<h3 class="subtitle-admin">Toutes les publications</h3>-->
+    
+    <nav id="posts-filter">
+            <div class="fetch">
+                <label for="datetime">Trier par date</label>
+                <input type="date" name="desired_date" id="datetime"/>
+                <i id="date-search" class="fa-solid fa-magnifying-glass"></i>
+            </div>
+    </nav>
+    <!--LOADER-->
+    <div id="loader" class="hide">
+        <div class="loader-content">
+            <div class="square">
+                <div class="trait1"></div>
+                <div class="trait2"></div>
+                <div class="trait3"></div>
+            </div>
+        </div>
+    </div>
+    <div class="result-count-box">
+        <!--Affiche le nombre de résultats de la requête-->
+    </div>
+    <div id="feed-reviews-admin">
+        <?php foreach($reviews as $review) : ?>
+            <article class="review-card-admin">
+                <span class="id-post"><?= $review['id_review'] ?></span>
+                <div class="card-header">
+                    <div class="profile-pic-pseudo">
+                        <img src="public/images/avatars/<?= $review['pdp'] ?>" alt="Photo de profil <?= $review['pseudo'] ?>" class="profile-picture-small">
+                        <h4 class="pseudo"><?= $review['pseudo'] ?> <span class="id-user"><?= $review['id_user'] ?></span></h4>
+                    </div>
+                </div>
+                <div class="review-card-button">
+                    <a href="index.php?action=manage-review&id=<?= $review['id_review'] ?>&user=<?= $review['id_user'] ?>" class="fake-button">Consulter</a>
+                </div>
+                <div class="card-main">
+                    <div class="review-title-poster">
+                        <img src="<?= $review['image'] ?>" alt="<?= $review['titre'] ?>" class="review-poster-admin">
+                    </div>
+                    <h4 class="subtitle-admin">Contenu</h4>
+                    <p class="review-content-admin"><?= $review['contenu'] ?></p>
+                    <small>Le <?= $review['date'] = date("d/m/Y", strtotime($review['date'])); ?></small>
+                </div>
+            </article>
+        <?php endforeach; ?>
+    </div>
+</section>
+<script type="module" src="public/js/filter_posts.js"></script>

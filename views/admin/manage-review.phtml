@@ -1,0 +1,58 @@
+<?php if(!empty($review) || $review != false) : ?>
+<section id="see-review">
+    <h2 class="section-title-admin">Publication n°<span class="id-post"><?= $review['id_review'] ?></span></h2>
+    <div class="delete-review">
+        <a href="index.php?action=delete-post-admin&id=<?= $review['id_review'] ?>" class="fake-button">Supprimer la publication</a>
+    </div>
+        <article class="review-card-admin">
+            <div class="card-header">
+                <div class="profile-pic-pseudo">
+                    <img src="public/images/avatars/<?= $review['pdp'] ?>" alt="Photo de profil <?= $review['pseudo'] ?>" class="profile-picture-small">
+                    <h4 class="pseudo"><?= $review['pseudo'] ?> <span class="id-user"><?= $review['id_user'] ?></span></h4>
+                </div>
+            </div>
+            <div class="card-main">
+                <div class="part-one">
+                    <h2 class="subtitle-admin"><?= $review['titre'] ?> <span class="id-oeuvre"><?= $review['id_oeuvre'] ?></span></h2>
+                    <div class="review-title-poster">
+                        <img src="<?= $review['image'] ?>" alt="<?= $review['titre'] ?>" class="review-poster-admin">
+                    </div>
+                </div>
+                <div class="part-two">
+                    <h3 class="subtitle-admin">Review</h3>
+                    <span><?= $etoiles = $this -> etoiles($review['note']) ?></span>
+                    <p><?= $review['contenu'] ?></p>
+                </div>
+            </div>
+            <div class="card-footer-admin">
+                <div class="comments">
+                    <h3 class="subtitle-admin">Commentaires</h3>
+                    <?php if (empty($comments)): ?>
+                        <p class="announcement">Aucun commentaire</p>
+                    <?php elseif(!empty($comments)): ?>
+                    <div class="comment-section">
+                        <?php foreach($comments as $comment) : ?>
+                            <div class="one-comment-admin">
+                                <span class="id-comment"><?= $comment['id_comment'] ?></span>
+                                <div class="comment-header">
+                                    <img src="public/images/avatars/<?= $comment['pdp'] ?>" alt="Photo de profil <?= $comment['pseudo'] ?>" class="profile-picture-small">
+                                    <h4 class="pseudo"><?= $comment['pseudo'] ?> <span class="id-user"><?= $review['id_user'] ?></span></h4>
+                                </div>
+                                <div class="comment-main">
+                                    <p><?= $comment['contenu'] ?></p>
+                                    <small>Le <?= $comment['date'] = date("d/m/Y à H:i", strtotime($comment['date'])); ?></small>
+                                </div>
+                                <div class="comment-footer">
+                                        <a href="index.php?action=delete-comment-admin&id=<?= $comment['id_comment'] ?>" class="fake-button">Supprimer le commentaire</a>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </article>
+</section>
+<?php else: ?>
+    <p class="red-admin">Aucune publication trouvée</p>
+<?php endif; ?>

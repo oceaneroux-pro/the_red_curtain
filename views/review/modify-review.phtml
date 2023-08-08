@@ -1,0 +1,49 @@
+<?php if ($review == false): ?>
+    <p class="red">Nous n'avons pas pu trouver la page correspondante</p>
+<?php else: ?>
+<section id="modify-review">
+    <h2 class='section-title'>Modifier une review</h2>
+    
+    <form method="post" id="modify-review-form">
+        <?php if (isset($alert)) : ?>
+            <p><?= $alert ?></p>
+        <?php endif; ?>
+        
+        <fieldset class="targetted-fieldset">
+            <!--Afficher une "carte info" de l'oeuvre-->
+        <div class="info-card-small">
+            <img src="<?= $review['image'] ?>" alt="<?= $review['titre'] ?>">
+            <div class='work-infos'>
+                <h3 class="review-title"><?= $review['titre'] ?></h3>
+                <span id='toggle'>Détails</span>
+                <div class="details">
+                    <p>Date de sortie: <?= $review['release_date'] ?></p>
+                    <p>Résumé: <?= $review['synopsis'] ?></p>
+                </div>
+            </div>
+            <input type="hidden" name="id_review" value="<?= $review['id_review'] ?>"/>
+        </div>
+        </fieldset>
+        <fieldset class="review-fieldset">
+            <h2 class="subtitle">Review</h2>
+            <?php if (isset($_GET['message'])): ?>
+                    <p><?= $_GET['message'] ?></p>
+            <?php endif; ?>
+            <div class="note-stars">
+                <div id="note">
+                    <label><span class="stars"><?= $etoiles = $this -> etoiles($review['note']) ?></span></label>
+                    <input type="hidden" name="note" value="<?= $review['note'] ?>"/>
+                    <i id="change-note" class="fa-solid fa-pen-to-square"></i>
+                </div>
+            </div>
+            <textarea class="textarea" name="contenu" rows="4"><?= $review['contenu'] ?></textarea>
+            <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+        </fieldset>
+        <div class="boutons">
+            <button type="submit" class="connected">Modifier</button>
+            <button type="reset" class="connected">Annuler</button>
+        </div>
+    </form>
+</section>
+<script type="module" src="public/js/modify_note.js"></script>
+<?php endif; ?>

@@ -1,0 +1,69 @@
+<section id="others-profile-main">
+    <!--MESSAGES D'ERREURS/ PRÉVENTION-->
+    <?php if (isset($_GET['warning'])): ?>
+        <p class="red"><i class="fa-solid fa-circle-info"></i> <?= $_GET['warning'] ?></p>
+    <?php elseif (isset($_GET['message'])): ?>
+        <p class="green"><?= $_GET['message'] ?></p>
+    <?php endif; ?>
+    <?php if(!empty($user)): ?>
+    <aside id="others-profile-aside">
+            <div class="img-and-pseudo">
+                <!--Afficher les informations de cet utilisateur-->
+                <img src="public/images/avatars/<?= $user['pdp'] ?>" alt="<?= htmlspecialchars($user['pseudo']) ?>" class="profile-picture-medium">
+                <!--Pseudo-->
+                <h3><?= htmlspecialchars($user['pseudo']) ?></h3>
+            </div>
+            <!--Si 2 utilisateurs ne sont pas amis : possibilité d'ajout-->
+            <?php if (isset($friends) && $friends == false) : ?>
+            <div class="formulaire">
+                <form action="index.php?action=add-friend&id=<?= $user['id_user'] ?>" method="POST">
+                  <input type="hidden" name="id_user_session" value="<?= $_SESSION['user']['id_user'] ?>">
+                  <input type="hidden" name="pseudo_user_session" value="<?= $_SESSION['user']['pseudo'] ?>">
+                  <input type="hidden" name="id_ami" value="<?= $user['id_user'] ?>">
+                  <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+                  <button type="submit" class="check connected"><i class="fa-solid fa-user-plus"></i></button>
+                </form>
+            </div>
+            <!--S'ils sont amis : possibilité de détruire ce lien-->
+            <?php elseif (isset($friends) && $friends == true): ?>
+            <div class="formulaire">
+                <form action="index.php?action=delete-friend" method="POST" id="delete-friend">
+                    <input type="hidden" name="id_user_session" value="<?= $_SESSION['user']['id_user'] ?>">
+                    <input type="hidden" name="pseudo_user_session" value="<?= $_SESSION['user']['pseudo'] ?>">
+                    <input type="hidden" name="id_ami" value="<?= $user['id_user'] ?>">
+                    <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+                    <button type="submit" class="check connected"><i class="fa-solid fa-user-minus"></i></button>
+                </form>
+            </div>
+            <?php endif ?>
+    </aside>
+    <section id="others-profile-reviews" class="">
+        <h3 class="subtitle">Les reviews de <?= $user['pseudo'] ?></h3>
+        <!--Afficher toutes les reviews de cet utilisateur-->
+        <?php if(array_key_exists('id',$_GET)) : ?>
+            <?php if (empty($reviews)): ?>
+                <p class="announcement">Aucune review disponible</p>
+            <?php else: ?>
+            <div class="counter-flex">
+                <?php foreach($reviews as $review) : ?>
+                    <article class="review-card-small">
+                        <div class="card-main">
+                            <h2 class="review-title"><a href="index.php?action=see-review&id=<?= $review['id_review'] ?>&user=<?= $review['id_user'] ?>"><?= $review['titre'] ?></a></h2>
+                            <div class="review-title-poster">
+                                    <img src="<?= $review['image'] ?>" alt="<?= $review['titre'] ?>" class="review-poster">
+                            </div>
+                            <h4>Note: <?= $etoiles = $this -> etoiles($review['note']) ?></h4>
+                            <p class="review-content"><?= $review['contenu'] ?></p>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+        <?php endif ?>
+    </section>
+</section>
+<script type="module" src="public/js/confirm.js"></script>
+<?php else: ?>
+    <p>Aucun utilisateur trouvé</p>
+    </section>
+<?php endif; ?>

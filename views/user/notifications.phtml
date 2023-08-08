@@ -1,0 +1,92 @@
+<section class="notifications">
+    <h2 class="section-title">Vos notifications</h2>
+    <?php if (empty($notifications)): ?>
+        <p class="announcement">Vous n'avez pas de notifications pour le moment.</p>
+    <?php else: ?>
+        <?php if (isset($_GET['message'])): ?>
+            <p class="announcement"><i class="fa-solid fa-circle-info"></i> <?= $_GET['message'] ?></p>
+        <?php endif; ?>
+        
+    <ul id="notif-list">
+    <?php foreach ($notifications as $notification): ?>
+    
+        <!--Si c'est une demande d'ami-->
+        <?php if ($notification['type'] == "demande"): ?>
+        <li class="one-notif">
+            <p>le <?= $notification['date'] = date("d/m/Y à H:i", strtotime($notification['date'])); ?>: <?= $notification['message'] ?></p>
+            <ul class="actions-container">
+                <li>
+                    <!--Accepter la demande-->
+                    <form action="index.php?action=accept-friend" method="POST">
+                      <input type="hidden" name="id_notif" value="<?= $notification['id_notif'] ?>">
+                      <input type="hidden" name="id_sender" value="<?= $notification['id_sender'] ?>">
+                      <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+                      <button type="submit" class="check connected"><i class="fa-solid fa-check"></i></button>
+                    </form>
+                </li>
+                <li>
+                    <!--Refuser la demande-->
+                    <form action="index.php?action=delete-notif" method="POST">
+                      <input type="hidden" name="id_notif" value="<?= $notification['id_notif'] ?>">
+                      <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+                      <button type="submit" class="check connected"><i class="fa-solid fa-xmark"></i></button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <?php endif; ?>
+    
+        <!--Si c'est un commentaire-->
+        <?php if ($notification['type'] == "commentaire"): ?>
+            <li class="one-notif">
+                <p>le <?= $notification['date'] = date("d/m/Y à H:i", strtotime($notification['date'])); ?>: <?= $notification['message'] ?></p>
+                <ul class="actions-container">
+                    <li>
+                        <!--Supprimer la notif-->
+                        <form action="index.php?action=delete-notif" method="POST">
+                          <input type="hidden" name="id_notif" value="<?= $notification['id_notif'] ?>">
+                          <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+                          <button type="submit" class="check connected"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        <?php endif; ?>
+        
+        <!--Si c'est un ajout-->
+        <?php if ($notification['type'] == "ajout"): ?>
+            <li class="one-notif">
+                <p>le <?= $notification['date'] = date("d/m/Y à H:i", strtotime($notification['date'])); ?>: <?= $notification['message'] ?></p>
+                <ul class="actions-container">
+                    <li>
+                        <!--Supprimer la notif-->
+                        <form action="index.php?action=delete-notif" method="POST">
+                          <input type="hidden" name="id_notif" value="<?= $notification['id_notif'] ?>">
+                          <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+                          <button type="submit" class="check connected"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        <?php endif; ?>
+        
+        <!--Si c'est un avertissement-->
+        <?php if ($notification['type'] == "avertissement"): ?>
+            <li class="one-notif warning-notif">
+                <p class=""><?= $notification['message'] ?></p>
+                <ul class="actions-container">
+                    <li>
+                        <!--Supprimer la notif-->
+                        <form action="index.php?action=delete-notif" method="POST">
+                          <input type="hidden" name="id_notif" value="<?= $notification['id_notif'] ?>">
+                          <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+                          <button type="submit" class="check connected"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+</section>

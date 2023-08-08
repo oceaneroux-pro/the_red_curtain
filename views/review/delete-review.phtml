@@ -1,0 +1,26 @@
+<?php if ($review == false): ?>
+    <p class="red">Nous n'avons pas pu trouver la page correspondante</p>
+<?php else: ?>
+<section id="delete-review">
+<form method="post">
+    <p class="alert">Voulez vous supprimer cette review ?</p>
+    <input type="hidden" name="id_review" value="<?= $review['id_review'] ?>"/>
+    <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+    <div class="boutons">
+        <button type="submit" class="connected">Oui, supprimer</button>
+    </div>
+</form>
+<article class="review-card-medium">
+    <div class="card-main">
+        <h2 class="review-title"><?= $review['titre'] ?></h2>
+        <div class="review-title-poster">
+                <img src="<?= $review['image'] ?>" alt="<?= $review['titre'] ?>" class="review-poster">
+        </div>
+        <h3 class="subtitle">Review</h3>
+        <h4>Note: <?= $etoiles = $this -> etoiles($review['note']) ?></h4>
+        <p class="review-content"><?= $review['contenu'] ?></p>
+        <small>Le <?= $review['date'] = date("d/m/Y", strtotime($review['date'])); ?></small>
+    </div>
+</article>
+</section>
+<?php endif; ?>

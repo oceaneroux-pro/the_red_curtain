@@ -1,0 +1,70 @@
+<!--Messages d'erreurs et avertissements-->
+<?php if (isset($_GET['message'])): ?>
+    <p class="red"><i class="fa-solid fa-circle-info"></i> <?= $_GET['message'] ?></p>
+<?php endif; ?>
+
+<section id="feed-header">
+    <h2 class="section-title">Votre fil d'actu</h2>    
+    <div class="fetch">
+        <input type="text" placeholder="Chercher un utilisateur" id="users-search-bar" class="search-bar"/>
+        <span id="friend-search" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></span>
+    </div>
+    <div id="target-users">
+            <!--Affichage des résultats de la recherche users-->
+    </div>
+    <nav id="feed-filter">
+    <ul>
+        <!--Home button = posts des amis de l'utilisateur-->
+        <li id="home"><button class="check connected"><i class="fa-solid fa-house"></i></button></li>
+        <!--Option: voir ses propres posts-->
+        <li id="self"><button class="check connected"><i class="fa-solid fa-user"></i></button></li>
+        <!--Option: voir les posts d'autres utilisateurs-->
+        <li id="others"><button class="check connected"><i class="fa-solid fa-compass"></i></button></li>
+    </ul>
+    </nav>
+    
+    <!--LOADER-->
+    <div id="loader" class="hide">
+        <div class="loader-content">
+            <div class="square">
+                <div class="trait1"></div>
+                <div class="trait2"></div>
+                <div class="trait3"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="main-feed">
+    <h2 class="section-title">Accueil</h2>
+    <section id="feed-reviews">
+        <?php if (empty($friends_reviews)): ?>
+            <p class="announcement">Vous n'avez pas ajouté d'amis pour le moment</p>
+        <?php else: ?>
+             <!--Affichage des reviews des amis de l'utilisateur = vue de base-->
+            <?php foreach($friends_reviews as $review) : ?>
+                <article class="review-card-medium">
+                    <div class="card-header">
+                        <div class="profile-pic-pseudo">
+                            <img src="public/images/avatars/<?= $review['pdp'] ?>" alt="Photo de profil <?= $review['pseudo'] ?>" class="profile-picture-small">
+                            <h4 class="pseudo"><?= $review['pseudo'] ?></h4>
+                        </div>
+                        <span class="friend-logo"><i class="fa-solid fa-user-group"></i>(amis)</span>
+                    </div>
+                    <div class="card-main">
+                        <h2 class="review-title"><a href="index.php?action=see-review&id=<?= $review['id_review'] ?>&user=<?= $review['id_user2'] ?>"><?= $review['titre'] ?></a></h2>
+                        <div class="review-title-poster">
+                            <img src="<?= $review['image'] ?>" alt="<?= $review['titre'] ?>" class="review-poster">
+                        </div>
+                        <h3 class="subtitle">Review</h3>
+                        <span><?= $etoiles = $this -> etoiles($review['note']) ?></span>
+                        <p class="review-content"><?= $review['contenu'] ?></p>
+                        <small>Le <?= $review['date'] = date("d/m/Y", strtotime($review['date'])); ?></small>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </section>
+</section>
+
+<script src="public/js/feed_manager.js"></script>

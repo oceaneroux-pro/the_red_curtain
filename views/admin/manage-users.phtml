@@ -1,0 +1,65 @@
+<section>
+    <h2 class="section-title-admin">Gérer les utilisateurs</h2>
+    <!--Messages d'erreurs/information-->
+    <?php if (isset($_GET['message'])): ?>
+        <p class="green-admin"><?= $_GET['message'] ?></p>
+    <?php endif; ?>
+    
+    <!--RECHERCHE USER VIA PSEUDO-->
+    <nav id="fetch-users">
+        <div class="fetch">
+            <input type="text" placeholder="Chercher un utilisateur" id="users-search-bar" />
+            <i id="friend-search" class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div id="results">
+            <!--Affichage des résultats de la recherche users-->
+        </div>
+    </nav>
+    
+    <!--LOADER-->
+    <div id="loader" class="hide">
+        <div class="loader-content">
+            <div class="square">
+                <div class="trait1"></div>
+                <div class="trait2"></div>
+                <div class="trait3"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!--RECHERCHE USER VIA CRITÈRES-->
+    <nav id="users-filter">
+        <label for="filter-select">Trier par</label>
+        <select name="filter" id="filter-select">
+            <option value="">--Choisissez une option--</option>
+            <option value="recent">Connexion: Moins de 2 ans</option>
+            <option value="old">Connexion: Plus de 2 ans</option>
+            <option value="no-posts">Posts: aucun</option>
+            <option value="all">Tous</option>
+        </select>
+    </nav>
+    
+    <div class="result-count-box"></div>
+    <section class="users-display">
+    <?php foreach($users as $user) : ?>
+        <article class="user-card">
+            <div class="users-result_container">
+                <img src="public/images/avatars/<?= $user['pdp'] ?>" alt="Photo de profil <?= $user['pseudo'] ?>" class="profile-picture-small">
+                <h4 class="pseudo"><a href="index.php?action=manage-users-profile&id=<?= $user['id_user'] ?>"><?= $user['pseudo'] ?></a></h4>
+            </div>
+            <div class="user-main">
+            <!--strtotime prend la date du last login et remonte 2 ans en arrière-->
+            <?php if (strtotime($user['last_login']) < strtotime('-2 years')): ?>
+            <!--Si la date remonte à plus de 2 ans alors le message sera en rouge-->
+            <p class="red-admin"><i class="fa-solid fa-triangle-exclamation"></i> Dernière connexion le <?= $user['last_login'] = date("d/m/Y à H:i", strtotime($user['last_login'])); ?></p>
+            
+            <?php elseif (strtotime($user['last_login']) > strtotime('-2 years')): ?>
+            <!--Si la date remonte à moins de 2 ans alors ce sera en vert-->
+            <p class="green-admin">Dernière connexion le <?= $user['last_login'] = date("d/m/Y à H:i", strtotime($user['last_login'])); ?></p>
+            <?php endif; ?>
+            </div>
+        </article>
+    <?php endforeach; ?>
+    </section>
+</section>
+<script type="module" src="public/js/filter_users.js"></script>

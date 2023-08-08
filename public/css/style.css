@@ -1,0 +1,2197 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+ HTML5 display-role reset for older browsers 
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+@font-face {
+    font-family: 'Rousseau';
+    src: url('../fonts/RousseauDeco.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* *****************************************************************
+                            GÉNÉRALITÉS
+***************************************************************** */
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+
+body {
+	font-size: 1.6rem;
+	font-family: 'Poppins', sans-serif;
+}
+
+img{
+	max-width: 100%;
+	width: auto; /* pour ie */
+	height: auto;
+	-ms-interpolation-mode: bicubic; /* lissage pour IE */
+	image-rendering: -webkit-optimize-contrast; /* lissage pour Chrome au redimensionnement*/
+}
+
+main{
+    margin: 2em 1em;
+}
+
+.disconnected-background{
+    background-image: url("../images/bcg13.jpg");
+}
+
+.connected-background{
+    background-image: url("../images/bcg6.jpg");
+}
+
+.disconnected-background,
+.connected-background{
+    background-color: #000;
+    color: #fff;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    overflow-x:hidden;
+    background-color: #000;
+}
+
+
+button{
+    text-align: center;
+    border: none;
+    border-radius: 9999em;
+    padding: 0.8em;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+    box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.3);
+    font-size: 1.6rem;
+	font-family: 'Poppins', sans-serif;
+}
+
+button:hover {
+    transform: translateY(-3px);
+}
+
+a{
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #ff0000;
+    text-decoration: none;
+}
+
+.profile-picture-small{
+    width: 65px;
+    height: 65px;
+    border-radius: 9999em;
+    overflow: hidden;
+}
+
+.profile-picture-medium{
+    width: 100px;
+    height: 100px;
+    border-radius: 9999em;
+    overflow: hidden;
+}
+
+.check{
+    width: 50px;
+    height: 50px;
+    border-radius: 9999em;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-title{
+    font-size: 2.7rem;
+    margin: 0.5em 0;
+    padding: 10px;
+    text-shadow: 0px 10px 30px rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+.fa-star{
+    color: #f7b634;
+    font-size: 2rem;
+    text-shadow: #f69933 1px 0 10px;
+}
+
+.fa-user-group{
+    color: #ff0000;
+}
+
+.form-error {
+    display: inline-block;
+    padding: 0.5em;
+    width: inherit;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.input-span{
+    margin: 1em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fa-magnifying-glass{
+    font-size: 2.5rem;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.fa-magnifying-glass:hover{
+    color: red;
+    transform: translateY(-3px);
+}
+
+.connected:hover{
+    background-image: linear-gradient(to right, red, #4a569d);
+    color: #fff;
+    box-shadow: -5px -5px 30px 5px red, 5px 5px 30px 5px blue;
+}
+
+.disconnected-button{
+    box-shadow: 0px 10px 30px rgba(255,255,255, 0.2);
+    text-shadow: #fff 1px 0 10px;
+}
+
+.announcement{
+    text-align: center;
+    padding: 0.5em 0;
+    line-height: 1.5;
+}
+
+textarea{
+    width: 90%;
+    border: none;
+    border-radius: 1em;
+    border-bottom: 1px solid #fff;
+    font-size: 1.6rem;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.2);
+    font-family: 'Poppins', sans-serif;
+    padding: 0.5em;
+}
+
+textarea:focus{
+    outline: none;
+    box-shadow: -5px -5px 30px 5px red, 5px 5px 30px 5px blue;
+    background-color: rgba(255,255,255,0.4);
+}
+
+.green,
+.red{
+    font-size: 1.7rem;
+    text-align: center;
+    text-shadow: #fff 1px 0 10px;
+    margin: 1em;
+}
+
+.green{
+    color: #a9d099;
+    text-shadow: #339966 1px 0 10px;
+}
+
+.red{
+    color: #ef4036;
+    text-shadow: #c5070f 1px 0 10px;
+}
+
+.green-admin,
+.red-admin{
+    font-size: 1.6rem;
+    text-align: center;
+    margin: 0.5em 0;
+}
+
+.green-admin{
+    color: #339966;
+}
+
+.red-admin{
+    color: #ef4036;
+}
+
+/* *****************************************************************
+                            LOADER
+***************************************************************** */
+
+#loader {
+    display: none;
+    margin: 1em auto;
+}
+
+.loader-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square{
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    top: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.trait1,
+.trait2,
+.trait3{
+    width: 8px;
+    height: 25px;
+    background-color: #fff;
+    animation: loading 1s infinite both;
+}
+
+.trait2{
+    animation-delay: .2s;
+}
+
+.trait3{
+    animation-delay: .4s;
+}
+
+@keyframes loading{
+    0%{
+        transition: height 100ms;
+        height: 40px;
+    }
+    50%{
+        transition: transform 100ms;
+    }
+    100%{
+        transition: transform 100ms;
+    }
+}
+
+
+/* *****************************************************************
+                            HEADER MOBILE
+***************************************************************** */
+
+.hidden-nav{
+    display: none;
+}
+
+.active{
+    display: contents;
+}
+
+.for-flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.for-flex a{
+    width: 90%;
+    margin-right: 1.5em;
+}
+
+.header{
+    padding: 0.5em 1em 0;
+}
+
+.header .menu,
+.header .menu-admin{
+    list-style: none;
+    font-size: 1.8rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.menu li{
+    margin: 0.5em 0;
+    padding: 0.7em;
+    width: 100%;
+    border-radius: 0.5em;
+    text-shadow: 0px 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+.menu li:active,
+.menu li:hover{
+    cursor: pointer;
+    color: #fff;
+    text-shadow: -2px -2px 5px red, 2px 2px 5px blue;
+    border-radius: 8px;
+    transform: translateY(-3px);
+}
+
+.header .profile-picture-small{
+    display: none;
+}
+
+.notification{
+    position: relative;
+}
+
+#notif-counter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff0000;
+    color: #fff;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 0%;
+    right: -22%;
+    font-size: 1.6rem;
+}
+
+input{
+    padding: 0.5em;
+    border-radius: 9999em;
+    border: 1px solid #eee;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 8px;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* *****************************************************************
+                    HOMEPAGE MOBILE (+ LOGIN)
+***************************************************************** */
+
+.main_container{
+    margin: 2em;
+    padding: 2em 1em;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 10px 30px rgba(255, 255, 255, 0.2);
+    border-radius: 1em;
+}
+
+.standard-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.standard-form fieldset{
+    border: none;
+    width: 100%;
+}
+
+.legend{
+    margin: 1em 0 0.5em;
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: 3px;
+    font-family: 'Rousseau', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: #fff 1px 0 10px;
+}
+
+.standard-form .legend{
+    margin: 0;
+}
+
+
+.input{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 1.5em;
+    width: 100%;
+}
+
+.label{
+    margin: 1em 0;
+}
+
+.standard-form input{
+    width: 80%;
+    border: none;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 10px 30px rgba(255,255,255, 0.2);
+}
+
+.standard-form input:focus{
+    outline: none;
+    box-shadow: #fff 1px 0 10px;
+}
+
+.standard-form .form-error{
+    color: #fff;
+    text-shadow: #ff0000 1px 0 10px;
+}
+
+.boutons,
+.boutons-disconnected{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* *****************************************************************
+                        PAGE FEED MOBILE
+***************************************************************** */
+
+#feed-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fetch{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+}
+
+.search-bar{
+    width: 70%;
+    padding: 0.5em;
+    margin-right: 1em;
+    border-radius: 9999em;
+    box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.3)
+}
+
+.search-bar:focus{
+    outline: none;
+    box-shadow: -5px -5px 30px 5px red, 5px 5px 30px 5px blue;
+}
+
+#feed-filter{
+    padding: 1em 0;
+}
+
+#feed-filter ul{
+    width: 200px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 1.6rem;
+}
+
+#main-feed{
+    margin: 0 1em;
+}
+
+/**********************REVIEW CARD***********************/
+
+.review-card-medium,
+.review-card-small{
+    border-radius: 1em;
+    margin: 3em 0;
+    box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.2)
+}
+
+.card-header,
+.card-main,
+.medium-card-footer{
+    padding: 1em;
+}
+
+.card-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.card-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    border-bottom: 1px solid rgba(255,255,255, 0.1);
+}
+
+.profile-pic-pseudo{
+    display: flex;
+    align-items: center;
+}
+
+.pseudo{
+    margin: 0 1em;
+    font-weight: bold;
+}
+
+.review-title,
+.subtitle{
+    line-height: 1.15;
+    letter-spacing: 3px;
+    font-family: 'Rousseau', sans-serif;
+    text-transform: uppercase;
+}
+
+.review-title{
+    font-size: 4.5rem;
+    text-align: center;
+    text-shadow: -2px -2px 5px red, 2px 2px 5px blue;
+    height: auto;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    /* Pour les navigateurs non-WebKit */
+    display: -moz-box;
+    -moz-box-orient: vertical;
+}
+
+.review-poster{
+    width: 90%;
+    box-shadow: -5px -5px 30px 5px red, 5px 5px 30px 5px blue;
+}
+
+.review-title-poster{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1em 0;
+}
+
+.subtitle{
+    color: #ff0000;
+    font-size: 2.5rem;
+    margin: 0.7em 0;
+    text-shadow: -2px -2px 5px red, 2px 2px 5px blue;
+}
+
+.review-card-medium .fa-star{
+    font-size: 2.7rem;
+    letter-spacing: 0.4rem;
+}
+
+.review-content{
+    margin: 2em 0;
+    line-height: 1.5;
+    width: 100%;
+	height: auto;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    /* Pour les navigateurs non-WebKit */
+    display: -moz-box;
+    -moz-box-orient: vertical;
+}
+
+.review-content:before{
+    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f10d";
+}
+
+.review-content:after{
+    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f10e";
+}
+
+.review-content:before,
+.review-content:after{
+    margin: 0 0.5em;
+    color: #ff0000;
+    text-shadow: -2px -2px 5px red, 2px 2px 5px blue;
+}
+
+.users-result_container{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin: 1em 0;
+}
+
+/* *****************************************************************
+                    PAGE "SEARCH-BOXES" MOBILE
+***************************************************************** */
+
+.search-work h2{
+    text-shadow: -2px -2px 5px red, 2px 2px 5px blue;
+}
+
+.search{
+    margin: 4em 1em;
+    text-align: center;
+}
+
+.search .announcement{
+    margin-bottom: 3em;
+}
+
+/*******************AFFICHAGE DES RÉSULTATS API********************/
+
+#target, #target2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.result_container{
+  width: 44%;
+  position: relative;
+  margin: 1em 0.5em;
+}
+
+.result_container > *{
+  position: relative;
+}
+
+.result_container p, 
+.result_container h3{
+    line-height: 1.2;
+    margin: 0.5em 0;
+    text-align: center;
+}
+
+.result_container h3{
+    text-shadow: #fff 1px 0 10px;
+}
+
+.result_container p{
+    font-size: 1.4rem;
+}
+
+.result-poster{
+    width: 100%;
+    height: auto;
+    box-shadow: -3px -3px 15px 3px red, 3px 3px 15px 3px blue;
+}
+
+.review-button{
+        display: none;
+}
+    
+.reviewer{
+    cursor: pointer;
+}
+
+/* *****************************************************************
+                PAGE "AJOUTER UNE REVIEW" MOBILE
+***************************************************************** */
+
+.info-card-small{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.info-card-small img{
+    width: 70%;
+    margin-bottom: 2em;
+}
+
+.info-card-small p{
+    line-height: 1.5;
+    text-align: justify;
+    margin: 0.5em 0;
+}
+
+#add-review-form .subtitle{
+    text-align: center;
+    margin-bottom: 0;
+}
+
+#add-review-form,
+#modify-review-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#add-review-form fieldset,
+#modify-review-form fieldset{
+    width: 90%;
+}
+
+.targetted-fieldset{
+    margin-bottom: 1.5em;
+}
+
+#rating label {
+    width: 25px;
+    cursor: pointer;
+    font-size: 3rem;
+    color: #f4c01e;
+}
+
+#rating input{
+    display: none;
+}
+
+.note-stars{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5em 0 1.5em 0;
+}
+
+.note-stars .fa-star{
+    font-size: 3rem;
+    letter-spacing: .5rem;
+}
+
+.details{
+    display: none;
+}
+
+#toggle{
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    cursor: pointer;
+}
+
+#toggle:hover{
+    font-size: 1.5rem;
+    text-shadow: -2px -2px 5px red, 2px 2px 5px blue;
+}
+
+.work-infos{
+    text-align: center;
+}
+
+.review-fieldset{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#add-review-form .boutons,
+#modify-review-form .boutons{
+    width: 70%;
+    margin: 1.5em 0;
+}
+
+/* *****************************************************************
+                        PAGE "PROFILE" MOBILE
+***************************************************************** */
+
+.aside-header{
+    margin: 2em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-and-pseudo{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 1em 0 1.5em 0;
+}
+
+.img-and-pseudo .profile-picture-medium,
+.img-and-pseudo .profile-picture-small{
+    margin-right: 1em;
+}
+
+.img-and-pseudo h3{
+    font-size: 2rem;
+}
+
+#profile-aside .toggle{
+    text-align: center;
+    margin: 2em 0;
+}
+
+#profile-friends h3{
+    margin: 2.7em 0 0 0;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: 3px;
+    font-family: 'Rousseau', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: #fff 1px 0 10px;
+}
+
+.friends-list{
+    padding: 1em;
+}
+
+.review-card-small{
+    margin: 2em 0;
+    padding: 1em;
+}
+
+.review-card-small .review-content{
+    margin: 1em 0 0.5em;
+    height: auto;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    /* Pour les navigateurs non-WebKit */
+    display: -moz-box;
+    -moz-box-orient: vertical;
+}
+
+.review-card-small h4{
+    margin: 0.5em 0 1em;
+    font-size: 1.8rem;
+}
+
+.card-footer{
+    /*width: 20%;*/
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card-footer i{
+    text-shadow: -2px -2px 5px blue;
+    color: #ff0000;
+}
+
+.card-footer i:hover{
+    color: #ff0000;
+    font-size: 3rem;
+}
+
+.card-footer a:first-child{
+    margin-right: 1em;
+}
+
+#profile-reviews{
+    text-align: center;
+}
+
+#profile-reviews .subtitle{
+    margin-top: 1.5em;
+}
+
+/* *****************************************************************
+                    PAGE "MODIFY REVIEW" MOBILE
+***************************************************************** */
+
+#note .fa-pen-to-square, 
+#note .fa-clock-rotate-left{
+    font-size: 2rem;
+    margin: 0 0.5em;
+    text-shadow: 0px 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+#note .fa-pen-to-square:hover, 
+#note .fa-clock-rotate-left:hover{
+    font-size: 2.3rem;
+    text-shadow: -2px -2px 5px red, 2px 2px 5px blue;
+}
+
+/* *****************************************************************
+                    PAGE "DELETE REVIEW" MOBILE
+***************************************************************** */
+
+#see-review .alert{
+    margin: 1em;
+}
+
+.alert{
+    font-size: 1.8rem;
+    text-align: center;
+    text-shadow: -2px -2px 5px red, 2px 2px 5px blue;
+}
+
+/* *****************************************************************
+                    PAGE "DELETE REVIEW" MOBILE
+***************************************************************** */
+
+#see-review .alert{
+    margin: 1em;
+}
+
+.alert{
+    font-size: 1.8rem;
+    text-align: center;
+    text-shadow: -2px -2px 5px red, 2px 2px 5px blue;
+}
+
+/* *****************************************************************
+                        PAGE "REVIEW" MOBILE
+***************************************************************** */
+
+#see-other-review .review-content{
+    display: inline-block;
+    margin-bottom: 1em;
+}
+
+#see-other-review .subtitle{
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+
+.input-after{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-after textarea{
+    width: 75%;
+    border-radius: 9999em;
+    padding: 0.5em;
+}
+
+.comment-input{
+    font-size: 1.5rem;
+}
+
+.comment-header{
+    display: flex;
+    align-items: center;
+}
+
+.comment-main{
+    margin: 1em;
+}
+
+.medium-card-footer{
+    padding-top: 2em;
+    border-top: 1px solid rgba(255,255,255, 0.1);
+}
+
+.comment-main p{
+    margin: 0.7em 0;
+    line-height: 1.5;
+    height: auto;
+	overflow: scroll;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    /* Pour les navigateurs non-WebKit */
+    display: -moz-box;
+    -moz-box-orient: vertical;
+}
+
+.comment-main small{
+    color: rgba(255,255,255, 0.4);
+}
+
+/* *****************************************************************
+                    SEE OTHERS PROFILE MOBILE
+***************************************************************** */
+
+#others-profile-aside{
+    display: flex;
+    align-items: center;
+}
+
+#others-profile-aside .img-and-pseudo{
+    width: 60%;
+}
+
+#others-profile-reviews{
+    text-align: center;
+}
+
+/* *****************************************************************
+                        NOTIFICATIONS MOBILE
+***************************************************************** */
+
+.one-notif{
+    display: flex;
+    align-items: center;
+}
+
+.one-notif p{
+    border-radius: 1em;
+    margin: 1em 1em 1em 0;
+    padding: 0.5em;
+    background-color: rgba(200, 200, 200, 0.3);
+    padding: 1em;
+}
+
+.warning-notif p{
+    background-color: rgba(255, 0, 0, 0.2);
+    line-height: 1.6;
+}
+
+.actions-container{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.actions-container li{
+    margin-right: 1em;
+}
+
+/* *****************************************************************
+                        BACKOFFICE MOBILE
+***************************************************************** */
+
+.backstage{
+    color: #000;
+}
+
+.standard-form-admin{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.standard-form-admin fieldset{
+    width: 100%;
+}
+
+.standard-form-admin legend{
+    margin: 1em 0 0.5em;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: #fff 1px 0 10px;
+}
+
+.standard-form-admin input{
+    width: 80%;
+    border: none;
+    background-color: rgba(192,192,192, 0.2);
+}
+
+.standard-form-admin input:focus{
+    outline: none;
+    border: 2px solid #429bdf;;
+}
+
+
+.admin-button,
+.fake-button{
+    text-align: center;
+    border: none;
+    border-radius: 9999em;
+    padding: 0.8em;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    background-color: rgba(192,192,192, 0.5);
+    color: #000;
+    font-family: 'Poppins', sans-serif;
+}
+
+.admin-button:hover,
+.fake-button:hover {
+    transform: translateY(-3px);
+    background-color: #429bdf;
+    color: #fff;
+}
+
+.aside-admin{
+    text-align: center;
+    line-height: 1.5;
+}
+
+.menu-admin li{
+    padding: 0.5em;
+    margin: 0.5em 0;
+}
+
+.menu-admin li:hover{
+    cursor: pointer;
+    text-shadow: none;
+    border-radius: 8px;
+    transform: translateY(-3px);
+}
+
+
+/* *****************************************************************
+                    HOMPEAGE ADMIN MOBILE
+***************************************************************** */
+
+.section-title-admin{
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+#works-filter,
+.pagination{
+    margin: 1em 0;
+}
+
+#works-filter{
+    text-align: center;
+}
+
+.pagination{
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pagination button{
+    margin: 0 1em;
+}
+
+.work-card{
+    border: 1px solid #eee;
+    border-radius: 1em;
+    padding: 1em;
+    margin: 2em 0;
+    line-height: 1.4;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.work-card .flex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 0;
+    text-align: center;
+}
+
+.work-card img{
+    width: 80%;
+}
+
+.subtitle-admin{
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0.5em 0;
+}
+
+.id-user, 
+.id-post,
+.id-oeuvre,
+.id-admin,
+.id-comment{
+    border-radius: 8px;
+    padding: 0.2em 0.5em;
+    font-family: monospace,sans-serif;
+    font-size: 1.6rem;
+    font-weight: normal;
+}
+
+.id-user{
+    background-color: #ff6961;
+}
+
+.id-post{
+    background-color: #a9d099;
+}
+
+.id-oeuvre{
+    background-color: lightblue;
+}
+
+.id-admin{
+    background-color: #e3daff;
+}
+
+.id-comment{
+    background-color: #f899cc;
+}
+
+
+/* *****************************************************************
+                    MANAGE-USERS ADMIN MOBILE
+***************************************************************** */
+
+#fetch-users{
+    margin: 1.5em 1em;
+}
+
+#fetch-users input{
+    margin-right: 1em;
+    width: 80%;
+}
+
+#fetch-users input:focus {
+    outline: 2px solid #ff0000;
+}
+
+#results a:hover,
+.users-display a:hover{
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.users-display{
+    margin: 1em;
+}
+
+/* *****************************************************************
+                MANAGE PROFILE ADMIN MOBILE
+***************************************************************** */
+
+.user-infos ul > li{
+    margin: 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.boutons-admin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.boutons-admin button{
+    margin: 1em 0;
+}
+
+#profile-comments{
+    margin: 2em 0;
+}
+
+.comment-main-admin{
+    line-height: 1.5;
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #eee;
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.one-comment-admin{
+    margin: 2em 0;
+}
+
+.comment-main-admin small{
+    font-size: 1.3rem;
+}
+
+/* *****************************************************************
+                    MANAGE POSTS ADMIN MOBILE
+***************************************************************** */
+
+.post-management .section-title-admin{
+    font-size: 2.7rem;
+}
+
+#posts-filter{
+    margin: 2em 0;
+}
+
+#posts-filter input{
+    margin: 0 1em;
+    width: 50%;
+}
+
+.review-poster-admin{
+    width: 70%;
+}
+
+.review-card-admin{
+    border: 1px solid #eee;
+    border-radius: 1em;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1em;
+    margin: 2em 0;
+}
+
+.review-card-admin .card-header{
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.review-card-button{
+    text-align: center;
+    margin: 0.5em 0;
+    display: flex;
+    justify-content: center;
+}
+
+.review-card-admin .card-main,
+.review-card-admin .card-footer-admin{
+    padding: 0;
+    line-height: 1.5;
+}
+
+.review-card-admin .card-main{
+    text-align: center;
+}
+
+.review-card-admin .card-footer-admin{
+    margin-top: 1em;
+    border-top: 1px solid #ddd;
+}
+
+.review-card-admin .card-main small{
+    font-size: 1.4rem;
+}
+
+.review-content-admin{
+    margin: 0.5em 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    /* Pour les navigateurs non-WebKit */
+    display: -moz-box;
+    -moz-box-orient: vertical;
+}
+
+.result-count-box{
+    text-align: center;
+    margin: 1em 0;
+}
+
+/* *****************************************************************
+                    MANAGE REVIEW ADMIN MOBILE
+***************************************************************** */
+
+.delete-review{
+    margin: 0 auto;
+    text-align: center;
+    margin: 1.5em 0;
+}
+
+.one-comment-admin .comment-header{
+    margin: 0.7em 0 0 0;
+}
+.comments .subtitle-admin,
+.comment-footer{
+    text-align: center;
+}
+
+.comment-footer{
+    margin-bottom: 1em;
+}
+
+.review-card-admin .card-main h4{
+    margin: 0.5em 0;
+}
+
+.review-card-admin .comment-main small{
+    color: inherit;
+    font-size: 1.3rem;
+}
+
+.review-card-admin .one-comment-admin{
+    border-bottom: 1px solid #ddd;
+}
+
+/* *****************************************************************
+                    CONFIRM DELETE POST ADMIN MOBILE
+***************************************************************** */
+
+.warning-form{
+    text-align: center;
+}
+
+.warning-form legend{
+    font-size: 2.6rem;
+    font-weight: 500;
+}
+
+.warning-form textarea{
+    width: 90%;
+    border: none;
+    background-color: rgba(192,192,192, 0.2);
+    color: inherit;
+    font-family: "Poppins", sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 1em auto;
+    padding: 0.5em;
+}
+
+.warning-form .boutons{
+    margin: 1em auto;
+}
+
+/* *****************************************************************
+                CONFIRM DELETE COMMENT ADMIN MOBILE
+***************************************************************** */
+
+.delete-comment .section-title-admin{
+    font-size: 2.5rem;
+}
+
+
+/* *****************************************************************
+                    SEND NOTIF ADMIN MOBILE
+***************************************************************** */
+
+#send-notif .boutons-warning{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1em auto;
+    align-items: center;
+}
+
+#send-notif .boutons-warning li{
+    margin: 1em 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+/***********************************************************************************/
+/* **************************** VERSION TABLETTE ***********************************/
+/***********************************************************************************/
+
+@media screen and (min-width: 768px)
+{
+    section{
+        margin: 1em 2em;
+    }
+    
+    .main_container{
+        width: 70%;
+        margin: 4em auto;
+    }
+    
+    /* *****************************************************************
+                            FEED TABLETTE
+    ***************************************************************** */
+    
+    #feed-reviews{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .review-card-medium{
+        width: 90%;
+    }
+    
+    .review-card-medium .review-poster{
+        width: 60%;
+    }
+    
+    #review-oeuvre .review-card-medium{
+        margin: 0 auto;
+    }
+    
+    .input-after{
+        justify-content: center;
+    }
+    
+    .input-after textarea{
+        margin-right: 1.5em;
+    }
+    
+    .comments{
+        margin: 3em 0;
+        padding: 0 2em;
+    }
+    
+    /* *****************************************************************
+                            PROFILE TABLETTE
+    ***************************************************************** */
+    
+    .counter-flex{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .review-card-small{
+        width: 47%;
+    }
+    
+    
+    /* *****************************************************************
+                        OTHERS PROFILE TABLETTE
+    ***************************************************************** */
+    
+    #others-profile-aside .img-and-pseudo {
+        width: 40%;
+    }
+    
+    #others-profile-reviews .counter-flex{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    #others-profile-reviews .counter-flex .review-card-small{
+        width: 300px;
+    }
+    
+    /* *****************************************************************
+                        BACKOFFICE TABLETTE
+    ***************************************************************** */
+    
+    .standard-form-admin fieldset{
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    /***************************************************************** */
+    
+    #oeuvres{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .work-card,
+    .review-card-admin{
+        width: 48%;
+    }
+    
+    /***************************************************************** */
+    
+    .fetch{
+        width: 60%;
+        margin: 0 auto;
+    }
+    
+    #feed-reviews-admin{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    #see-review .review-card-admin{
+        width: 90%;
+        margin: 0 auto;
+    }
+    
+    #see-review .review-card-admin .review-poster-admin{
+        width: 60%;
+    }
+    
+    /***************************************************************** */
+    
+    #profile-aside,
+    #profile-comments{
+        width: 70%;
+        margin: 0 auto;
+    }
+    
+    #profile-aside .boutons-admin{
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 1.5em 0;
+    }
+    
+    /***************************************************************** */
+    
+    #send-notif .boutons-warning li{
+        margin: 1em 0;
+    }
+    
+    #send-notif .boutons-warning .admin-button{
+        margin: 0 0.5em;
+    }
+}
+
+/***********************************************************************************/
+/* **************************** VERSION DESKTOP ************************************/
+/***********************************************************************************/
+
+@media screen and (min-width: 1024px)
+{
+    .main_container{
+        width: 40%;
+        margin: 2em auto;
+    }
+    
+    .header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 3em 3em 0;
+    }
+    
+    .header img{
+       width: 370px; 
+    }
+    
+    .for-flex{
+        width: 25%;
+    }
+    
+    .hidden-nav{
+        display: contents;
+        width: 70%;
+    }
+    
+    #drop-down-menu{
+        display: none;
+    }
+    
+    .header .menu,
+    .header .menu-admin{
+        width: 45%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    main{
+        margin: 0 2em;
+    }
+    
+    .section-title{
+        font-size: 3.2rem;
+    }
+    
+    .legend{
+        font-size: 3rem;
+    }
+    
+    /* *****************************************************************
+                                FEED DESKTOP
+    ***************************************************************** */
+    
+    .fetch{
+        width: 40%;
+        margin: 2em auto;
+    }
+    
+    #feed-reviews{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    
+    .review-card-medium{
+        width: 500px;
+    }
+    
+    .review-card-medium .review-poster{
+        width: 60%;
+    }
+    
+    /* *****************************************************************
+                            SEARCH BOXES DESKTOP
+    ***************************************************************** */
+    
+    #target, #target2{
+        width: 70%;
+        margin: 2em auto;
+    }
+    
+    .result_container{
+      width: 15%;
+      margin: 1em;
+    }
+    
+    /* *****************************************************************
+                            ADD REVIEW DESKTOP
+    ***************************************************************** */
+    
+    #add-review,
+    #modify-review{
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    .info-card-small{
+        flex-direction: row;
+        align-items: normal;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .info-card-small img{
+        width: 25%;
+    }
+    
+    .work-infos{
+        text-align: left;
+        margin-top: 2em;
+        width: 70%;
+    }
+    
+    .work-infos .review-title{
+        text-align: left;
+        display: block;
+    }
+    
+    .details{
+        display: contents;
+    }
+    
+    #toggle{
+        display: none;
+    }
+    
+    #add-review-form .subtitle{
+        font-size: 3rem;
+    }
+    
+    #add-review-form #rating,
+    #modify-review-form #rating{
+        margin: 1.5em 0;
+    }
+    
+    .note-stars{
+        display: block;
+    }
+    
+    #add-review-form .boutons
+    #modify-review-form .boutons{
+        width: 30%;
+    }
+    
+    /*.boutons button{*/
+    /*    width: 30%;*/
+    /*}*/
+    
+    #add-review-form fieldset,
+    #modify-review-form fieldset{
+        width: 70%;
+    }
+    
+    #add-review-form .boutons,
+    #modify-review-form .boutons{
+        width: 40%;
+        margin: 1.5em 0;
+    }
+    
+    /* *****************************************************************
+                            DELETE REVIEW DESKTOP
+    ***************************************************************** */
+    
+    #delete-review .review-card-medium{
+        margin: 3em auto;
+        padding: 1em;
+    }
+    
+    .delete-review{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* *****************************************************************
+                            PROFILE DESKTOP
+    ***************************************************************** */
+    
+    #profile{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .counter-flex{
+        justify-content: space-around;
+    }
+    
+    #profile-main{
+        width: 40%;
+        margin: 0;
+    }
+    
+    #profile-main .legend{
+        font-size: 2.5rem;
+    }
+    
+    #profile-aside .boutons-admin{
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin: 1.5em 0;
+    }
+    
+    #profile-aside .boutons{
+        margin: 1em auto;
+    }
+    
+    #profile-reviews{
+        width: 58%;
+        margin: 0;
+    }
+    
+    .review-card-small{
+        width: 300px;
+    }
+    
+    .friends-list{
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    /* *****************************************************************
+                            OTHERS PROFILE DESKTOP
+    ***************************************************************** */
+    
+    #others-profile-aside{
+        width: 60%;
+    }
+    
+    #others-profile-main{
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    #others-profile-aside .img-and-pseudo{
+        width: auto;
+        margin-right: 2em;
+    }
+    
+    /* *****************************************************************
+                            NOTIFICATIONS DESKTOP
+    ***************************************************************** */
+    
+    #notif-list{
+        width: 40%;
+        margin: 0 auto;
+    }
+    
+    .one-notif p{
+        width: 100%;
+    }
+    
+    /* *****************************************************************
+                                REVIEW DESKTOP
+    ***************************************************************** */
+    
+    #review-oeuvre .review-card-medium{
+        width: 90%;
+        border: none;
+        box-shadow: 0 0 0 0 transparent;
+    }
+    
+    #review-oeuvre .review-card-medium .review-poster{
+        width: 300px;
+    }
+    
+    #review-oeuvre .review-card-medium .card-main{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    
+    #review-oeuvre .review-card-medium .card-main .review-title{
+        overflow: visible;
+        display: block;
+    }
+    
+    #review-oeuvre .review-card-medium .card-main,
+    #review-oeuvre .review-card-medium .medium-card-footer{
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    
+    #review-oeuvre .review-card-medium .card-header{
+        justify-content: flex-start;
+        border: none;
+    }
+    
+    #review-oeuvre .review-card-medium .card-header .pseudo{
+        font-size: 2rem;
+    }
+    
+    #review-oeuvre .review-card-medium .review-title-poster{
+        display: block;
+    }
+    
+    .part-one{
+        width: 40%;
+    }
+    
+    .part-two{
+        width: 58%;
+    }
+    
+    .part-two,
+    #see-other-review .card-main .subtitle{
+        text-align: left;
+    }
+    
+    .input-after{
+        width: 60%;
+        margin: 0 auto;
+    }
+    
+    .comment-main p {
+        overflow: visible;
+    }
+    
+    .comment-section{
+        height: 250px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+    
+    /* *****************************************************************
+                            BACKOFFICE DESKTOP
+    ***************************************************************** */
+    
+    .standard-form-admin fieldset{
+        width: 30%;
+        margin: 0 auto;
+    }
+    
+    .standard-form-admin .boutons{
+        margin: 2em 0;
+    }
+    
+    /***************************************************************** */
+    
+    #oeuvres{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    
+    .work-card,
+    .review-card-admin{
+        width: 300px;
+    }
+    
+    /***************************************************************** */
+    
+    .fetch{
+        width: 50%;
+        margin: 0 auto;
+    }
+    
+    #feed-reviews-admin{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    
+    #feed-reviews-admin .review-card-admin{
+        width: 470px;
+    }
+    
+    #see-review .review-card-admin{
+        width: 90%;
+        margin: 0 auto;
+    }
+    
+    #see-review .review-card-admin .review-poster-admin{
+        width: 60%;
+    }
+    
+    /***************************************************************** */
+    
+    #comments{
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    #comments > :first-child{
+        text-align: center;
+    }
+    
+    .comment-list{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    
+    #comments .one-comment-admin{
+        width: 300px;
+    }
+    
+    .comment-main-admin p{
+        height: auto;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    	display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        /* Pour les navigateurs non-WebKit */
+        display: -moz-box;
+        -moz-box-orient: vertical;
+    }
+    
+    #fetch-users .fetch{
+        width: 30%;
+    }
+    
+    /***************************************************************** */
+    
+    .delete-comment .one-comment-admin,
+    .delete-comment .warning-form{
+        margin: 0 auto;
+    }
+    
+    .delete-comment .warning-form{
+        width: 70%;
+    }
+    
+    .delete-comment .one-comment-admin{
+        width: 50%;
+    }
+    
+    #users-filter{
+        text-align: center;
+    }
+    
+    .users-display{
+        width: 70%;
+        margin: 1em auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .user-card{
+        width: 350px;
+        margin: 1.5em;
+    }
+    
+    #main-admin #results{
+        width: 50%;
+        margin: 1em auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /***************************************************************** */
+    
+    #see-review .review-card-admin{
+        width: 60%;
+    }
+    
+    #see-review .review-card-admin .review-poster-admin{
+        width: 300px;
+    }
+    
+    #see-review .review-card-admin .card-main{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: baseline;
+        margin: 0 3em;
+    }
+    
+    #see-review .review-card-admin .review-title-poster{
+        display: block;
+    }
+    
+    .part-two,
+    #see-other-review .card-main .subtitle{
+        text-align: left;
+    }
+    
+    .input-after{
+        width: 60%;
+        margin: 0 auto;
+    }
+    
+    .comment-main p {
+        overflow: visible;
+    }
+    
+    .comments .one-comment-admin{
+        width: 80%;
+        margin: 0 auto;
+        border: none;
+    }
+    
+    /***************************************************************** */
+    
+    .warning-form{
+        width: 60%;
+        margin: 0 auto;
+    }
+    
+    #delete-user form{
+        text-align: center;
+        width: 30%;
+        margin: 2em auto;
+    }
+    
+    #delete-user .boutons-warning{
+        margin: 1em auto;
+        width: 50%;
+        
+    }
+    
+    #send-notif .fake-button{
+        font-size: 1.8rem;
+    }
+    
+    /***************************************************************** */
+    
+    #main-admin #profile-aside,
+    #main-admin #profile-comments{
+        width: 50%;
+        margin: 1em auto;
+    }
+}

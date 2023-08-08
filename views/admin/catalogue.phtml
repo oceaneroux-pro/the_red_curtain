@@ -1,0 +1,37 @@
+<section id="catalogue">
+    <h2 class="section-title-admin">Catalogue</h2>
+    <nav id="works-filter">
+        <label for="filter-select">Trier par catégorie</label>
+        <select name="filter" id="filter-select">
+            <option value="">--Choisissez une option--</option>
+            <option value="serie">Série</option>
+            <option value="film">Film</option>
+            <option value="livre">Livre</option>
+            <option value="all">Tout</option>
+        </select>
+    </nav>    
+    
+    <div class="pagination">
+        <!--Les boutons viendront s'ajouter ici-->
+    </div>
+    
+    <section id="oeuvres">
+    <?php foreach($oeuvres as $oeuvre) : ?>
+        <article class="work-card">
+            <span class="id-oeuvre"><?= $oeuvre['id_oeuvre'] ?></span>
+            <div class="flex">
+                <img src="<?= $oeuvre['image'] ?>" alt="<?= $oeuvre['titre'] ?>" class='vignette'>
+            </div>    
+            <div class="flex">    
+                <h2 class="subtitle-admin"><?= $oeuvre['titre'] ?></h2>
+                <?php if ($oeuvre['nom_cat'] == "Livre"): ?>
+                <small>Sorti en <?= $oeuvre['release_date'] ?></small>
+                <?php else: ?>
+                <small>Sorti le <?= $oeuvre['release_date'] ?></small>
+                <?php endif; ?>
+            </div>
+        </article>
+    <?php endforeach; ?>
+    </section>
+</section>
+<script type="module" src="public/js/filter_oeuvres.js"></script>

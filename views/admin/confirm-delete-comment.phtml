@@ -1,0 +1,34 @@
+<?php if(!empty($comment) || $comment != false) : ?>
+<section class="delete-comment">
+    <!--Messages d'erreur-->
+    <h3 class="section-title-admin">Supprimer le commentaire n°<span class="id-comment"><?= $comment['id_comment'] ?></span></h3>
+    <?php if (isset($_GET['message'])): ?>
+        <p class="announcement"><?= $_GET['message'] ?></p>
+    <?php endif; ?>
+    
+    <div class="one-comment-admin">
+        <div class="comment-header">
+            <h4 class="pseudo"><?= $comment['pseudo'] ?> <span class="id-user"><?= $comment['id_user'] ?></span></h4>
+        </div>
+        <div class="comment-main-admin">
+            <p><?= $comment['contenu'] ?></p>
+            <small>Le <?= $comment['date'] = date("d/m/Y à H:i", strtotime($comment['date'])); ?></small>
+        </div>
+    </div>
+    
+    <form method="POST" class="warning-form">
+        <fieldset>
+            <legend>Message envoyé</legend>
+            <textarea class="textarea" name="textarea" id="message" rows="12" readonly><?= $message ?></textarea>
+            <input type="hidden" name="id_user" value="<?= $comment['id_user'] ?>"/>
+            <input type="hidden" name="id_comment" value="<?= $comment['id_comment'] ?>"/>
+        </fieldset>
+        <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+        <div class="boutons">
+            <button type="submit" class="admin-button">Confirmer la supression</button>
+        </div>
+    </form>
+</section>
+<?php else: ?>
+    <p class="red-admin">Aucun commentaire trouvé</p>
+<?php endif; ?>

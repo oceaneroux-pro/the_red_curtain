@@ -1,0 +1,81 @@
+<section id="see-other-review">
+    <?php if (!empty($review) || $review != false): ?>
+    <h2 class="section-title">La review de <?= $review['pseudo'] ?></h2>
+    <?php if (isset($_GET['alert'])): ?>
+        <p class="red"><?= $_GET['alert'] ?></p>
+    <?php endif; ?>
+    <section id="review-oeuvre">
+        
+        <article class="review-card-medium">
+            <div class="card-header">
+                <div class="profile-pic-pseudo">
+                    <img src="public/images/avatars/<?= $review['pdp'] ?>" alt="Photo de profil <?= $review['pseudo'] ?>" class="profile-picture-medium">
+                    <a href='index.php?action=see-others&id=<?= $review['id_user'] ?>'><h4 class="pseudo"><?= $review['pseudo'] ?></h4></a>
+                </div>
+                <?php if ($verifFriendship == true): ?>
+                    <span class="friend-logo"><i class="fa-solid fa-user-group"></i>(amis)</span>
+                <?php endif; ?>
+            </div>
+            <div class="card-main">
+                <div class="part-one">
+                    <h2 class="review-title"><?= $review['titre'] ?></h2>
+                    <div class="review-title-poster">
+                        <img src="<?= $review['image'] ?>" alt="<?= $review['titre'] ?>" class="review-poster">
+                    </div>
+                </div>
+                <div class="part-two">
+                    <h3 class="subtitle">Review</h3>
+                    <span><?= $etoiles = $this -> etoiles($review['note']) ?></span>
+                    <p class="review-content"><?= $review['contenu'] ?></p>
+                </div>
+            </div>
+            <?php if ($verifFriendship == true): ?>
+            <div class="medium-card-footer">
+                <div class="formulaire">
+                    <form action= "index.php?action=see-review&id=<?= $review['id_review'] ?>&user=<?= $review['id_user'] ?>" method="post" class="comment-form">
+                        <fieldset>
+                            <h2 class="subtitle">Ajouter un commentaire</h2>
+                            <?php if (isset($_GET['message'])): ?>
+                                <p class="announcement"><?= $_GET['message'] ?></p>
+                            <?php endif; ?>
+                            <div class="input-after">
+                                <input type="hidden" name="id_review" value="<?= $review['id_review'] ?>"/>
+                                <input type="hidden" name="id_user" value="<?= $review['id_user'] ?>"/>
+                                <textarea class="textarea comment-input" name="commentaire" rows="1"></textarea>
+                                <button type="submit" class="check connected" id="bouton"><i class="fa-solid fa-paper-plane"></i></button>
+                            </div>
+                            <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+                        </fieldset>
+                    </form>
+                </div>
+                <?php else: ?>
+                    <p class="announcement">Vous n'êtes pas amis avec cet utilisateur et ne pouvez par conséquent pas laisser de commentaire sous sa publication.</p>
+                <?php endif; ?>
+                <div class="comments">
+                    <h3 class="subtitle">Commentaires</h3>
+                    <?php if (empty($comments)): ?>
+                        <p class="announcement">Aucun commentaire</p>
+                    <?php elseif(!empty($comments)): ?>
+                    <div class="comment-section">
+                        <?php foreach($comments as $comment) : ?>
+                            <div class="one-comment">
+                                <div class="comment-header">
+                                    <img src="public/images/avatars/<?= $comment['pdp'] ?>" alt="Photo de profil <?= $comment['pseudo'] ?>" class="profile-picture-small">
+                                    <h4 class="pseudo"><?= $comment['pseudo'] ?></h4>
+                                </div>
+                                <div class="comment-main">
+                                    <p><?= $comment['contenu'] ?></p>
+                                    <small>Le <?= $comment['date'] = date("d/m/Y à H:i", strtotime($comment['date'])); ?></small>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                </div>
+        </article>
+    </section>    
+</section>
+<?php else: ?>
+    <p class"red">Désolé, aucun article n'a été trouvé.</p>
+<?php endif; ?>

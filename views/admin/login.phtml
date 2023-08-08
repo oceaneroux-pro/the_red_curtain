@@ -1,0 +1,24 @@
+<section class="admin-login-form">
+    <div class="formulaire">
+        <form action="index.php?action=admin" method="post" id="form-sensible" class="standard-form-admin">
+            <fieldset>
+                <legend class="legend_login">Se connecter</legend>
+                <?php if(isset($message)) : ?>
+                    <p class="red-admin"><?= $message ?> </p>
+                <?php endif; ?>
+                <div class="input identifiant">
+                    <input type="text" name="id_unique" class="donnee"/>
+                    <label class="label">Votre identifiant</label>
+                </div>
+                <div class="input password">
+                    <input type="password" name="mdp" class="donnee"/>
+                    <label class="label">Mot de passe</label>
+                </div>
+            </fieldset>
+            <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+            <div class="boutons">
+                <button type="submit" class="admin-button" id="bouton">Se connecter</button>
+            </div>
+        </form>
+    </div>
+</section>

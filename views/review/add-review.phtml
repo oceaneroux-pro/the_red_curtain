@@ -1,0 +1,42 @@
+<section id="add-review">
+    <h2 class="section-title">Ajouter une review</h2>
+    
+    <!--Les informations sur l'oeuvre sont récupérées depuis le session storage-->
+    <form method="post" enctype="multipart/form-data" id="add-review-form">
+        <fieldset class="targetted-fieldset">
+            <!--Afficher une "carte info" de l'oeuvre-->
+            <div id='infoCard'>
+                <!--ID unique à l'oeuvre-->
+                <!--Titre-->
+                <!--Date-->
+                <!--Poster-->
+                <!--Type-->
+                <!--Synopsis-->
+            </div>
+        </fieldset>
+        <fieldset class="review-fieldset">
+            <legend class="subtitle">Review</legend>
+            <div class="note-stars">
+                <div id="rating">
+                  <input type="radio" class="star" id="star1" name="note" value="1">
+                  <label for="star1" class="rating-star"><i class="far fa-star star-1" id="1"></i></label>
+                  <input type="radio" class="star" id="star2" name="note" value="2">
+                  <label for="star2" class="rating-star"><i class="far fa-star star-2" id="2"></i></label>
+                  <input type="radio" class="star" id="star3" name="note" value="3">
+                  <label for="star3" class="rating-star"><i class="far fa-star star-3" id="3"></i></label>
+                  <input type="radio" class="star" id="star4" name="note" value="4">
+                  <label for="star4" class="rating-star"><i class="far fa-star star-4" id="4"></i></label>
+                  <input type="radio" class="star" id="star5" name="note" value="5">
+                  <label for="star5" class="rating-star"><i class="far fa-star star-5" id="5"></i></label>
+                </div>
+            </div>
+            <textarea class="textarea" name="contenu" rows="4" placeholder="Ça se passe ici..."></textarea>
+            <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+        </fieldset>
+        <div class="boutons">
+            <button type="submit" class="connected" id="bouton">Publier</button>
+            <button type="reset" class="connected">Annuler</button>
+        </div>
+    </form>
+</section>
+<script src="public/js/retrieve_infos.js"></script>

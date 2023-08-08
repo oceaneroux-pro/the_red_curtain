@@ -1,0 +1,144 @@
+<section id="profile">
+    <!--Messages d'erreurs ou avertissements-->
+    <?php if (isset($_GET['warning'])): ?>
+        <p class="red"><i class="fa-solid fa-circle-info"></i> <?= $_GET['warning'] ?></p>
+    <?php endif; ?>
+    <section id="profile-main">
+        <!--Messages d'erreurs ou avertissements-->
+        <?php if (isset($_GET['message'])): ?>
+        <p class="green"><i class="fa-solid fa-circle-info"></i> <?= $_GET['message'] ?></p>
+        <?php elseif (isset($_GET['attention'])): ?>
+            <p class="red"><i class="fa-solid fa-triangle-exclamation"></i> <?= $_GET['attention'] ?></p>
+        <?php elseif (isset($_GET['alert'])): ?>
+        <?php foreach ($_GET as $key => $value) : ?>
+            <?php if ($key !== "action") : ?>
+                <p class="red"><i class="fa-solid fa-triangle-exclamation"></i> <?= $value ?></p>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <?php endif; ?>
+        
+        <section id="profile-aside">
+            <!--Informations de cet utilisateur-->
+            <div class="aside-header">
+                <div class="img-and-pseudo">
+                    <img src="public/images/avatars/<?= htmlspecialchars($user['pdp']) ?>"alt="<?= htmlspecialchars($user['pseudo']) ?>" class="profile-picture-medium">
+                    <h3><?= htmlspecialchars($user['pseudo']) ?></h3>
+                </div>
+                <h3 id="toggle">Voir mes informations</h3>
+            </div>
+        <!--DONNÉES UTILISATEUR-->
+            <!--FORMULAIRE DE MODIFICATION-->
+            <div class="details"> 
+                <div class="formulaire">
+                    <form action="index.php?action=update-profile" method="post" enctype="multipart/form-data" id="form-sensible" class="standard-form" data-inputs-required="5">
+                        <fieldset>
+                            <h2 class="legend">Identité et coordonnées</h2>
+                            <div class="input-span">
+                                <div class="input nom">
+                                    <input type="text" name="nom" id="nom" value="<?= $user['nom'] ?>" />
+                                    <label for="" class="label">Nom</label>
+                                </div>
+                                <div class="error-nom"></div>
+                            </div>
+                            <div class="input-span">
+                                <div class="input prenom">
+                                    <input type="text" name="prenom" id="prenom" value="<?= $user['prenom'] ?>" />
+                                    <label for="" class="label">Prénom</label>
+                                </div>
+                                <div class="error-prenom"></div>
+                            </div>
+                            <div class="input-span">
+                                <div class="input anniversaire">
+                                    <input type="date" name="anniversaire" id="anniversaire" value="<?= $user['anniversaire'] ?>" />
+                                    <label for="" class="label">Date de naissance</label>
+                                </div>
+                                <div class="error-anniversaire"></div>
+                            </div>
+                            <div class="input-span">
+                                <div class="input tel">
+                                    <input type="phone" name="tel" id="tel" value="<?= $user['tel'] ?>" />
+                                    <label for="" class="label">Téléphone</label>
+                                </div>
+                                <div class="error-tel"></div>
+                            </div>
+                            <div class="input-span">
+                                <div class="input photo">
+                                    <input type="file" name="pdp" id="pdp" value="<?= $user['pdp'] ?>"/>
+                                    <label for="" class="label">Photo de profil </label>
+                                </div>
+                            </div>
+                            <input type="hidden" name="token" value="<?= $_SESSION['csrf_token'] ?>">
+                        </fieldset>   
+                            
+                        <fieldset>
+                            <h2 class="legend">Changer d'adresse mail</h2>
+                            <div class="input-span">
+                                <div class="input">
+                                    <div class="error-email"></div>
+                                     <input type="email" name="mail" id="mail" value="<?= $user['mail'] ?>"/>
+                                <label for="" class="label">Email</label>
+                                </div>
+                                <div class="error-email"></div>
+                            </div>
+                        </fieldset>
+                        <div class="boutons">
+                            <button type="submit" class="connected" id="bouton">Modifier</button>
+                            <button type="reset" class="connected" id="annuler">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!--LISTE D'AMIS-->
+                    <section id="profile-friends">
+                    <h3>Ma liste d'amis</h3>
+                    
+                    <?php if (empty($friends)): ?>
+                        <p style="text-align: center">Votre liste d'amis est vide.</p>
+                    <?php else: ?>
+                        <ul class="friends-list">
+                        <?php foreach($friends as $friend) : ?>
+                            <li>
+                                <div class="img-and-pseudo">
+                                <img src="public/images/avatars/<?= htmlspecialchars($friend['pdp']) ?>"alt="<?= htmlspecialchars($friend['pseudo']) ?>" class="profile-picture-small">
+                                <a href='index.php?action=see-others&id=<?= htmlspecialchars($friend['id_user2']) ?>'><?= htmlspecialchars($friend['pseudo']) ?></a>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+                </div>
+            </section>
+        </section>
+        <section id="profile-reviews">
+            <h3 class="subtitle">Mes reviews</h3>
+            <?php if (empty($reviews)): ?>
+                <div class="announcement">
+                    <p>Vous n'avez pas publié de reviews pour le moment.</p>
+                    <a href="index.php?action=search">Ajouter une review</a>
+                </div>
+            <?php else: ?>
+            <!--Afficher toutes les reviews de cet utilisateur-->
+            <div class="counter-flex">
+            <?php foreach($reviews as $review) : ?>
+                <article class="review-card-small">
+                    <div class="card-main">
+                        <div class="review-title-poster">
+                            <figure>
+                                <img src="<?= $review['image'] ?>" alt="<?= $review['titre'] ?>" class="review-poster">
+                            </figure>
+                        </div>
+                        <h4>Note: <?= $etoiles = $this -> etoiles($review['note']) ?></h4>
+                        <p class="review-content"><?= $review['contenu'] ?></p>
+                    </div>
+                    <div class="card-footer">
+                            <a href="index.php?action=modify-review&id=<?= $review['id_review'] ?>"><i class="fa-solid fa-pen-to-square connected"></i></a>
+                            <a href="index.php?action=delete-review&id=<?= $review['id_review'] ?>"><i class="fa-solid fa-trash connected"></i></a>
+                        </div>
+                </article>
+            <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+        </section>
+    </section>
+</section>
+<script type="module" src="public/js/valid_form.js"></script>
